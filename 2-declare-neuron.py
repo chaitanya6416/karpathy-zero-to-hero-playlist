@@ -134,7 +134,9 @@ class Neuron:
         self.w = [Value(random()) for _ in range(nin)]
         self.b = Value(random())
     def __call__(self, x):
-        return Value(sum((wi*xi for wi, xi in zip(self.w, x)), self.b))
+        out = sum((wi*xi for wi, xi in zip(self.w, x)), self.b)
+        out = out.relu()
+        return out
     def __repr__(self):
         return f"{self.w=} {self.b=}"
 
